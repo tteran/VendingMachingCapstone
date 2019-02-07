@@ -22,9 +22,9 @@ namespace Capstone.VendingMachine
         public void MakeChange(decimal balance)
         {
             int workingBalance = (int)balance * 100;
-            for (int i=0;i<coinValues.Length;i++)
+            for (int i=0; i < coinValues.Length; i++)
             {
-                while ((workingBalance % coinValues[i]==0))
+                while ((workingBalance % coinValues[i]==0) && workingBalance > 0)
                 {
                     workingBalance -= coinValues[i];
                     if(i==0)

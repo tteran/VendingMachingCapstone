@@ -12,6 +12,7 @@ namespace Capstone.VendingMachine
         public decimal CurrentBalance { get; private set; }
 
         protected List<VendingMachineProduct> purchasedProducts = new List<VendingMachineProduct>();
+        
 
         public Dictionary<string, VendingMachineProduct> inventory = new Dictionary<string, VendingMachineProduct>();
         //{
@@ -69,9 +70,21 @@ namespace Capstone.VendingMachine
         /// This finalizes the transaction.
         /// </summary>
         /// <returns></returns>
-        public decimal FinishTransaction()
+        public void FinishTransaction()
         {
-            return 0;
+            // Call change method.
+            Change change = new Change();
+            change.MakeChange(CurrentBalance);
+            
+            // Set machine's current balance to 0.
+            CurrentBalance = 0;
+
+            // Print message based on snacks purchased.
+            foreach (VendingMachineProduct product in purchasedProducts)
+            {
+                Console.WriteLine($"{product.ProductSelection()}");
+            }
+
         }
     }
 

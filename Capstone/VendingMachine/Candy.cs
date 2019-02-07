@@ -12,7 +12,7 @@ namespace Capstone.VendingMachine
         }
 
         /// <summary>
-        /// Returns the consumed Message
+        /// Returns the consumed message.
         /// </summary>
         /// <returns></returns>
         public override string ProductSelection()

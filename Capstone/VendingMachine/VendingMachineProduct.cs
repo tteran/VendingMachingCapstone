@@ -15,8 +15,6 @@ namespace Capstone.VendingMachine
         /// Gets the quantity of the product.
         /// </summary>
         public int Quantity { get; set; }
-        // TODO The "Private Set" in the VMProduct Class might prevent us from modifing this prop in vending Machine Class
-
 
         /// <summary>
         /// Gets the price of the product.
