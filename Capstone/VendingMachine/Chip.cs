@@ -11,5 +11,14 @@ namespace Capstone.VendingMachine
 
         }
 
+        /// <summary>
+        /// Returns the consumed Message
+        /// </summary>
+        /// <returns></returns>
+        public override string ProductSelection()
+        {
+            return "Crunch Crunch, Yum!";
+        }
+
     }
 }

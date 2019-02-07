@@ -15,12 +15,19 @@ namespace Capstone.VendingMachine
         /// Gets the quantity of the product.
         /// </summary>
         public int Quantity { get; private set; }
-        
+        // TODO The "Private Set" in the VMProduct Class might prevent us from modifing this prop in vending Machine Class
+
+
         /// <summary>
         /// Gets the price of the product.
         /// </summary>
         public decimal Price { get; }
 
+        /// <summary>
+        /// Creates a Vending machine product
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="price"></param>
         public VendingMachineProduct(string name, decimal price)
         {
             this.Quantity = 5;
@@ -28,9 +35,15 @@ namespace Capstone.VendingMachine
             this.Price = price;
         }
 
-        public virtual string ProductSelection()
-        {
-            return "";
-        } 
+        /// <summary>
+        /// Returns the consumed Message
+        /// </summary>
+        /// <returns></returns>
+        //public virtual string ProductSelection()
+        //{
+        //    return "";
+        //} 
+
+        public abstract string ProductSelection();
     }
 }
