@@ -9,11 +9,19 @@ namespace Capstone.VendingMachine
     /// </summary>
     public class VendingMachine
     {
+        /// <summary>
+        /// The current balance for the machine
+        /// </summary>
         public decimal CurrentBalance { get; private set; }
 
+        /// <summary>
+        /// A List that represents the products purchased by the customer BEFORE the finish transaction method is called
+        /// </summary>
         protected List<VendingMachineProduct> purchasedProducts = new List<VendingMachineProduct>();
-        
 
+        /// <summary>
+        /// Represents the inventory of the machine based on slotCode and product
+        /// </summary>
         public Dictionary<string, VendingMachineProduct> inventory = new Dictionary<string, VendingMachineProduct>();
         //{
         //    get
@@ -23,17 +31,22 @@ namespace Capstone.VendingMachine
         //    }
         //}
 
+
+        /// <summary>
+        /// Creates a Vending Machine
+        /// </summary>
         public VendingMachine()
         {
             this.CurrentBalance = 0;
+            StockMachine(inventory);
         }
 
         public void Buy(string slotCode)
         {
             // TODO add method code for Buy method
 
-            if(inventory.TryGetValue(slotCode, out VendingMachineProduct selectedProduct))
-            {              
+            if (inventory.TryGetValue(slotCode, out VendingMachineProduct selectedProduct))
+            {
                 //selectedProduct = this.Inventory[slotCode];
 
                 // Check if sold out
@@ -44,13 +57,13 @@ namespace Capstone.VendingMachine
                 }
 
                 // Check if the user has enough money to buy the product.
-                if(this.CurrentBalance < selectedProduct.Price)
+                if (this.CurrentBalance < selectedProduct.Price)
                 {
                     Console.WriteLine("Not enough credits.");
                     return;
                 }
 
-               //Console.WriteLine(selectedProduct.ProductSelection());
+                //Console.WriteLine(selectedProduct.ProductSelection());
                 this.CurrentBalance -= selectedProduct.Price;
                 selectedProduct.Quantity--;
 
@@ -75,7 +88,7 @@ namespace Capstone.VendingMachine
             // Call change method.
             Change change = new Change();
             change.MakeChange(CurrentBalance);
-            
+
             // Set machine's current balance to 0.
             CurrentBalance = 0;
 
@@ -84,6 +97,9 @@ namespace Capstone.VendingMachine
             {
                 Console.WriteLine($"{product.ProductSelection()}");
             }
+
+            // Gets list ready for next transaction.
+            purchasedProducts.Clear();
 
         }
     }
