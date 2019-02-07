@@ -16,6 +16,7 @@ namespace Capstone.CLIs
                 Console.WriteLine("1. Feed Money");
                 Console.WriteLine("2. Select Product");
                 Console.WriteLine("3. Finish Transaction");
+                Console.WriteLine($"Current money provided:");
                 string choice = GetString("Pick One: ");
 
                 if(choice == "1")

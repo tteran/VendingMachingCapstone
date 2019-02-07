@@ -11,14 +11,16 @@ namespace Capstone.VendingMachine
     {
         public decimal CurrentBalance { get; private set; }
 
-        public Dictionary<string, VendingMachineProduct> Inventory
-        {
-            get
-            {
-                // Create a Dictionary
-                return new Dictionary<string, VendingMachineProduct>();
-            }
-        }
+        private List<VendingMachineProduct> purchasedProducts = new List<VendingMachineProduct>();
+
+        public Dictionary<string, VendingMachineProduct> inventory = new Dictionary<string, VendingMachineProduct>();
+        //{
+        //    get
+        //    {
+        //        // Create a Dictionary
+        //        return new Dictionary<string, VendingMachineProduct>();
+        //    }
+        //}
 
         public VendingMachine()
         {
@@ -27,18 +29,37 @@ namespace Capstone.VendingMachine
 
         public void Buy(string slotCode)
         {
-            VendingMachineProduct selectedProduct = this.Inventory[slotCode];
             // TODO add method code for Buy method
 
-            // Check if sold out
-            if (selectedProduct.Quantity == 0)
-            {
-                Console.WriteLine("Product SOLD OUT");
-                return;
-            }
+            if(inventory.TryGetValue(slotCode, out VendingMachineProduct selectedProduct))
+            {              
+                //selectedProduct = this.Inventory[slotCode];
 
-            // At the end of the buy method we reasigned the updated version of that product 
-            this.Inventory[slotCode] = selectedProduct;
+                // Check if sold out
+                if (selectedProduct == null || selectedProduct.Quantity == 0)
+                {
+                    Console.WriteLine("Product SOLD OUT or Doesn't Exist");
+                    return;
+                }
+
+                // Check if the user has enough money to buy the product.
+                if(this.CurrentBalance < selectedProduct.Price)
+                {
+                    Console.WriteLine("Not enough credits.");
+                    return;
+                }
+
+               //Console.WriteLine(selectedProduct.ProductSelection());
+                this.CurrentBalance -= selectedProduct.Price;
+                selectedProduct.Quantity--;
+
+                // At the end of the buy method we reasigned the updated version of that product 
+                this.inventory[slotCode] = selectedProduct;
+            }
+            else
+            {
+                Console.WriteLine("Not valid slot code.");
+            }
         }
     }
 }
