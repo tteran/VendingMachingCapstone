@@ -24,6 +24,7 @@ namespace Capstone.CLIs
 
                 if(choice == "1")
                 {
+                    // Displays inventory to user.
 
                 }
                 else if (choice == "2")
