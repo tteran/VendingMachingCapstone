@@ -28,7 +28,17 @@ namespace Capstone.VendingMachine
         public void Buy(string slotCode)
         {
             VendingMachineProduct selectedProduct = this.Inventory[slotCode];
+            // TODO add method code for Buy method
 
+            // Check if sold out
+            if (selectedProduct.Quantity == 0)
+            {
+                Console.WriteLine("Product SOLD OUT");
+                return;
+            }
+
+            // At the end of the buy method we reasigned the updated version of that product 
+            this.Inventory[slotCode] = selectedProduct;
         }
     }
 }
