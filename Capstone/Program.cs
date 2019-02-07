@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Capstone.CLIs;
+using System;
 
 namespace Capstone
 {
@@ -6,7 +7,9 @@ namespace Capstone
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            // Displays the main menu
+            MainMenuCLI menu = new MainMenuCLI();
+            menu.Run();
         }
     }
 }
