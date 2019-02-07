@@ -11,7 +11,7 @@ namespace Capstone.VendingMachine
     {
         public decimal CurrentBalance { get; private set; }
 
-        private List<VendingMachineProduct> purchasedProducts = new List<VendingMachineProduct>();
+        protected List<VendingMachineProduct> purchasedProducts = new List<VendingMachineProduct>();
 
         public Dictionary<string, VendingMachineProduct> inventory = new Dictionary<string, VendingMachineProduct>();
         //{
@@ -53,6 +53,9 @@ namespace Capstone.VendingMachine
                 this.CurrentBalance -= selectedProduct.Price;
                 selectedProduct.Quantity--;
 
+                // Adds selected product to customer's inventory.
+                this.purchasedProducts.Add(selectedProduct);
+
                 // At the end of the buy method we reasigned the updated version of that product 
                 this.inventory[slotCode] = selectedProduct;
             }
@@ -61,5 +64,15 @@ namespace Capstone.VendingMachine
                 Console.WriteLine("Not valid slot code.");
             }
         }
+
+        /// <summary>
+        /// This finalizes the transaction.
+        /// </summary>
+        /// <returns></returns>
+        public decimal FinishTransaction()
+        {
+            return 0;
+        }
     }
+
 }
