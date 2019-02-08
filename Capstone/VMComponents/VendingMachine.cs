@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 
-namespace Capstone.VendingMachine
+namespace Capstone.VMComponents
 {
     /// <summary>
     /// Represents a Vending Machine
@@ -24,14 +24,6 @@ namespace Capstone.VendingMachine
         /// Represents the inventory of the machine based on slotCode and product
         /// </summary>
         public Dictionary<string, VendingMachineProduct> inventory = new Dictionary<string, VendingMachineProduct>();
-        //{
-        //    get
-        //    {
-        //        // Create a Dictionary
-        //        return new Dictionary<string, VendingMachineProduct>();
-        //    }
-        //}
-
 
         /// <summary>
         /// Creates a Vending Machine
@@ -55,6 +47,7 @@ namespace Capstone.VendingMachine
             if (!validTender.Contains(dollarsPutIn))
             {
                 Console.Write("Please enter a valid bill ($1, $2, $5, $10)");
+                Console.ReadLine();
             }
             else
             {
@@ -67,6 +60,10 @@ namespace Capstone.VendingMachine
 
         }
 
+        /// <summary>
+        /// Buys a product from the machine
+        /// </summary>
+        /// <param name="slotCode"></param>
         public void Buy(string slotCode)
         {
             // Adds method code for Buy method
@@ -110,6 +107,7 @@ namespace Capstone.VendingMachine
             else
             {
                 Console.WriteLine("Not a valid slot code.");
+                Console.ReadLine();
             }
         }
 
@@ -129,7 +127,7 @@ namespace Capstone.VendingMachine
             // Print message based on snacks purchased.
             foreach (VendingMachineProduct product in purchasedProducts)
             {
-                Console.WriteLine($"{product.ProductSelection()}");
+                Console.WriteLine($"{product.ConsumedMessage()}");
             }
 
             // Gets list ready for next transaction.
@@ -137,6 +135,10 @@ namespace Capstone.VendingMachine
             Console.ReadLine();
         }
 
+        /// <summary>
+        /// Displays machine inventory
+        /// </summary>
+        /// <param name="inventory"></param>
         public void DisplayVendingMachineItems(Dictionary<string, VendingMachineProduct> inventory)
         {
             foreach (KeyValuePair<string, VendingMachineProduct> product in inventory)
@@ -150,7 +152,7 @@ namespace Capstone.VendingMachine
                 {
                     quantity = "SOLD OUT";
                 } 
-                Console.WriteLine($"{slotCode}|{name, -20}{price:C2, -10} Quantity:{quantity}");
+                Console.WriteLine($"{slotCode}|{name, -20}{price:C2}\tQuantity: {quantity}");
             }
            
         }

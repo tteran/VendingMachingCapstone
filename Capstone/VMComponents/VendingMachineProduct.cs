@@ -2,8 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Capstone.VendingMachine
+namespace Capstone.VMComponents
 {
+    /// <summary>
+    /// Represents a Vending Machine Product
+    /// </summary>
     public abstract class VendingMachineProduct
     {
         /// <summary>
@@ -37,11 +40,6 @@ namespace Capstone.VendingMachine
         /// Returns the consumed Message
         /// </summary>
         /// <returns></returns>
-        //public virtual string ProductSelection()
-        //{
-        //    return "";
-        //} 
-
-        public abstract string ProductSelection();
+        public abstract string ConsumedMessage();
     }
 }

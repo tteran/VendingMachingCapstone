@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Capstone.VMComponents;
 
 namespace Capstone.CLIs
 {
@@ -10,7 +11,7 @@ namespace Capstone.CLIs
     /// </summary>
     public class MainMenuCLI : CLI
     {
-        public override void Run(VendingMachine.VendingMachine vendingMachine)
+        public override void Run(VendingMachine vendingMachine)
         {
             while (true)
             {

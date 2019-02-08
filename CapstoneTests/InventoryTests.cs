@@ -1,4 +1,4 @@
-﻿using Capstone.VendingMachine;
+﻿using Capstone.VMComponents;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;

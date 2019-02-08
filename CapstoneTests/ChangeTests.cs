@@ -1,4 +1,4 @@
-using Capstone.VendingMachine;
+using Capstone.VMComponents;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace CapstoneTests

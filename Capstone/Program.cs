@@ -1,5 +1,6 @@
 ﻿using Capstone.CLIs;
 using System;
+using Capstone.VMComponents;
 
 namespace Capstone
 {
@@ -7,7 +8,7 @@ namespace Capstone
     {
         static void Main(string[] args)
         {
-            VendingMachine.VendingMachine vendingMachine = new VendingMachine.VendingMachine();
+            VendingMachine vendingMachine = new VendingMachine();
             MainMenuCLI menu = new MainMenuCLI();
             menu.Run(vendingMachine);
         }

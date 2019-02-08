@@ -1,4 +1,5 @@
-﻿using DeliveryApp.CLIs;
+﻿using Capstone.VMComponents;
+using DeliveryApp.CLIs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,7 +8,7 @@ namespace Capstone.CLIs
 {
     class PurchaseMenuCLI : CLI
     {
-        public override void Run(VendingMachine.VendingMachine vendingMachine)
+        public override void Run(VendingMachine vendingMachine)
         {
             while(true)
             {
@@ -68,7 +69,12 @@ namespace Capstone.CLIs
             }
         }
 
-        private void DisplayPurchaseMenu(VendingMachine.VendingMachine vm, string choice)
+        /// <summary>
+        /// Displays the console menu
+        /// </summary>
+        /// <param name="vm"></param>
+        /// <param name="choice"></param>
+        private void DisplayPurchaseMenu(VendingMachine vm, string choice)
         {
             Console.Clear();
             Console.WriteLine("Purchasing Process Menu");
@@ -76,7 +82,7 @@ namespace Capstone.CLIs
             Console.WriteLine("2. Select Product");
             Console.WriteLine("3. Finish Transaction");
             Console.WriteLine($"Current money provided: {vm.CurrentBalance:C2}");
-            Console.WriteLine($"Pick One: {choice}");
+            Console.WriteLine($"Pick One:  {choice}");
 
         }
     }
