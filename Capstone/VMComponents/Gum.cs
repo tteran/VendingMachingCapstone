@@ -14,11 +14,8 @@ namespace Capstone.VMComponents
         /// </summary>
         /// <param name="name"></param>
         /// <param name="price"></param>
-        public Gum(string name, string price) : base(name, price)
-        {
-
-        }
-
+        public Gum(string name, string price) : base(name, price) { }
+   
         /// <summary>
         /// Returns the consumed message.
         /// </summary>

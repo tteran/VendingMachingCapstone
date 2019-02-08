@@ -17,7 +17,6 @@ namespace Capstone.CLIs
             {
                 Console.Clear();
                 Console.WriteLine("Welcome to the Vendo-Matic 500");
-
                 Console.WriteLine("Please make a choice");
                 Console.WriteLine("1. Display Vending Machine Items");
                 Console.WriteLine("2. Purchase");

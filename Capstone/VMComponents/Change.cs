@@ -14,7 +14,6 @@ namespace Capstone.VMComponents
         /// </summary>
         private readonly int[] coinValues = { 25, 10, 5 };
 
-
         /// <summary>
         /// Represents the number of Quarters
         /// </summary>

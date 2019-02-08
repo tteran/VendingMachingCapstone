@@ -21,11 +21,25 @@ namespace Capstone.VMComponents
             {
                 while (!sr.EndOfStream)
                 {
+                    int i = 1;
                     string currentLine = sr.ReadLine();
                     string[] itemInfo = currentLine.Split('|');
 
-                    VendingMachineProduct vendingMachineProduct = Assembly.GetExecutingAssembly().CreateInstance("Capstone.VMComponents." + itemInfo[itemInfo.Length - 1], true, BindingFlags.Default, null, new string[] { itemInfo[1], itemInfo[2] }, null, null) as VendingMachineProduct;
-                    inventory.Add(itemInfo[0], vendingMachineProduct);
+                    try
+                    {
+                        VendingMachineProduct vendingMachineProduct = Assembly.GetExecutingAssembly().CreateInstance("Capstone.VMComponents." + itemInfo[itemInfo.Length - 1], true, BindingFlags.Default, null, new string[] { itemInfo[1], itemInfo[2] }, null, null) as VendingMachineProduct;
+
+                        if (vendingMachineProduct != null )
+                        {
+                             inventory.Add(itemInfo[0], vendingMachineProduct);
+                        }                      
+                    }
+                    catch(Exception ex)
+                    {
+                        Console.Write("Inventory could not fully load.");
+                        Console.Write($"Line number: {i} could not be deserialized.");
+                    }               
+                    i++;
                 }
             }
         }

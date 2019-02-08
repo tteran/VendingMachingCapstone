@@ -5,7 +5,7 @@ using System.Text;
 namespace Capstone.VMComponents
 {
     /// <summary>
-    /// Represents a Candy vending product
+    /// Represents a Candy vending product.
     /// </summary>
     public class Candy:VendingMachineProduct
     {
@@ -14,11 +14,8 @@ namespace Capstone.VMComponents
         /// </summary>
         /// <param name="name"></param>
         /// <param name="price"></param>
-        public Candy(string name, string price):base(name, price)
-        {
-
-        }
-
+        public Candy(string name, string price):base(name, price) { }
+     
         /// <summary>
         /// Returns the consumed message.
         /// </summary>

@@ -50,14 +50,10 @@ namespace Capstone.VMComponents
                 Console.ReadLine();
             }
             else
-            {
-                
-                currentMoneyProvided += dollarsPutIn;
-               
+            {               
+                currentMoneyProvided += dollarsPutIn;              
             }
-
             this.CurrentBalance += currentMoneyProvided;
-
         }
 
         /// <summary>

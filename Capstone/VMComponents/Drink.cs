@@ -14,11 +14,8 @@ namespace Capstone.VMComponents
         /// </summary>
         /// <param name="name"></param>
         /// <param name="price"></param>
-        public Drink(string name, string price) : base(name, price)
-        {
-
-        }
-
+        public Drink(string name, string price) : base(name, price) { }
+    
         /// <summary>
         /// Returns the consumed message.
         /// </summary>
