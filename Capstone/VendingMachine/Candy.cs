@@ -6,7 +6,7 @@ namespace Capstone.VendingMachine
 {
     public class Candy:VendingMachineProduct
     {
-        public Candy(string name, decimal price):base(name, price)
+        public Candy(string name, string price):base(name, price)
         {
 
         }

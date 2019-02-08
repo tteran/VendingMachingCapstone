@@ -6,7 +6,7 @@ namespace Capstone.VendingMachine
 {
     public class Gum: VendingMachineProduct
     {
-        public Gum(string name, decimal price) : base(name, price)
+        public Gum(string name, string price) : base(name, price)
         {
 
         }

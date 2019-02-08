@@ -6,7 +6,7 @@ namespace Capstone.VendingMachine
 {
     public class Chip:VendingMachineProduct
     {
-        public Chip(string name, decimal price) : base(name, price)
+        public Chip(string name, string price) : base(name, price)
         {
 
         }
