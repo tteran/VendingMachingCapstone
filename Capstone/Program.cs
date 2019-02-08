@@ -9,7 +9,7 @@ namespace Capstone
         static void Main(string[] args)
         {
             // Displays the main menu
-            VendingMachine vendingMachine;
+            //VendingMachine vendingMachine;
             MainMenuCLI menu = new MainMenuCLI();
             menu.Run();
         }
