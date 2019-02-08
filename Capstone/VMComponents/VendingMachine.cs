@@ -40,6 +40,7 @@ namespace Capstone.VMComponents
         /// </summary>
         public void FeedMoney(int dollarsPutIn)
         {
+            bool hasRan = false;
             int currentMoneyProvided = 0;
 
             int[] validTender = new int[4] { 1, 2, 5, 10 };
@@ -54,6 +55,7 @@ namespace Capstone.VMComponents
                 currentMoneyProvided += dollarsPutIn;              
             }
             this.CurrentBalance += currentMoneyProvided;
+            hasRan = true;
         }
 
         /// <summary>

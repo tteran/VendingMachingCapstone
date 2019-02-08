@@ -6,8 +6,15 @@ using System.Text;
 
 namespace Capstone.CLIs
 {
+    /// <summary>
+    /// Represents a PurchaseMenuCLI
+    /// </summary>
     class PurchaseMenuCLI : CLI
     {
+        /// <summary>
+        /// Runs the Purchase Menu display
+        /// </summary>
+        /// <param name="vendingMachine"></param>
         public override void Run(VendingMachine vendingMachine)
         {
             while(true)

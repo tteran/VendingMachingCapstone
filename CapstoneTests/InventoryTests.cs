@@ -44,8 +44,15 @@ namespace CapstoneTests
             foreach (KeyValuePair<string, VendingMachineProduct> kv in expectedReturn)
             {
                 string expectedKey = kv.Key;
+                
+                // Tests if key exists
                 bool hasKey = actualOutput.TryGetValue(expectedKey, out VendingMachineProduct actualValue);
                 Assert.IsTrue(hasKey);
+
+                // Tests if actual object value is not null
+                Assert.IsNotNull(actualValue);
+
+                // Tests if objects are the same, with the same properties
                 VendingMachineProduct expectedValue = kv.Value;
                 expectedValue.Should().BeEquivalentTo(actualValue);
             }
