@@ -7,7 +7,7 @@ namespace Capstone
     {
         static void Main(string[] args)
         {
-            Capstone.VendingMachine.VendingMachine vendingMachine = new VendingMachine.VendingMachine();
+            VendingMachine.VendingMachine vendingMachine = new VendingMachine.VendingMachine();
             MainMenuCLI menu = new MainMenuCLI();
             menu.Run(vendingMachine);
         }

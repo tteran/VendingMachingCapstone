@@ -8,12 +8,13 @@ namespace Capstone.CLIs
     /// <summary>
     /// This is a main menu.
     /// </summary>
-    class MainMenuCLI : CLI
+    public class MainMenuCLI : CLI
     {
-        public override void Run()
+        public override void Run(VendingMachine.VendingMachine vendingMachine)
         {
             while (true)
             {
+                Console.Clear();
                 Console.WriteLine("Welcome to the Vendo-Matic 500");
 
                 Console.WriteLine("Please make a choice");
@@ -30,13 +31,12 @@ namespace Capstone.CLIs
                 else if (choice == "2")
                 {
                     PurchaseMenuCLI purchaseMenu = new PurchaseMenuCLI();
-                    purchaseMenu.Run();
+                    purchaseMenu.Run(vendingMachine);
                 }
-                else if (choice == "Q" || choice == "q")
+                else if (choice == "Q" || choice == "q" || choice == "3")
                 {
                     break;
                 }
-
                 else
                 {
                     Console.WriteLine("Invalid Option.");

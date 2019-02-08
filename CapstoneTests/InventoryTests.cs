@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CapstoneTests
@@ -36,9 +37,17 @@ namespace CapstoneTests
                 {"D3", new Gum("Chiclets", "0.75") },
                 {"D4", new Gum("Triplemint", "0.75") }
             };
+
             inventory.StockMachine(actualOutput);
 
-            CollectionAssert.AreEqual(expectedReturn, actualOutput, "Should return A1 Chip 3.05.");
+            foreach (KeyValuePair<string, VendingMachineProduct> kv in expectedReturn)
+            {
+                string expectedKey = kv.Key;
+                bool hasKey = actualOutput.TryGetValue(expectedKey, out VendingMachineProduct actualValue);
+                Assert.IsTrue(hasKey);
+                VendingMachineProduct expectedValue = kv.Value;
+                Assert.AreEqual(expectedValue, actualValue);
+            }
         }
     }
 }

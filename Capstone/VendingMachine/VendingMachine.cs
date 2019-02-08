@@ -46,7 +46,7 @@ namespace Capstone.VendingMachine
         /// <summary>
         /// Method for adding money to Vending Machine.
         /// </summary>
-        public decimal FeedMoney(int dollarsPutIn, decimal balance)
+        public void FeedMoney(int dollarsPutIn)
         {
             int currentMoneyProvided = 0;
 
@@ -63,8 +63,7 @@ namespace Capstone.VendingMachine
                
             }
 
-            balance += currentMoneyProvided;
-            return balance;
+            this.CurrentBalance += currentMoneyProvided;
 
         }
 
@@ -72,17 +71,20 @@ namespace Capstone.VendingMachine
         {
             // TODO add method code for Buy method
 
-            if (inventory.TryGetValue(slotCode, out VendingMachineProduct selectedProduct))
+            if (inventory.TryGetValue(slotCode.ToUpper(), out VendingMachineProduct selectedProduct))
             {
-                //selectedProduct = this.Inventory[slotCode];
-
                 // Check if sold out
-                if (selectedProduct == null || selectedProduct.Quantity == 0)
+                if (selectedProduct == null)
                 {
-                    Console.WriteLine("Product SOLD OUT or Doesn't Exist");
+                    Console.WriteLine("Product does not exist.");
                     return;
                 }
-
+                if (selectedProduct.Quantity == 0)
+                {
+                    Console.WriteLine("Product is SOLD OUT.");
+                    return;
+                }
+                 
                 // Check if the user has enough money to buy the product.
                 if (this.CurrentBalance < selectedProduct.Price)
                 {
@@ -102,7 +104,7 @@ namespace Capstone.VendingMachine
             }
             else
             {
-                Console.WriteLine("Not valid slot code.");
+                Console.WriteLine("Not a valid slot code.");
             }
         }
 
@@ -114,10 +116,10 @@ namespace Capstone.VendingMachine
         {
             // Call change method.
             Change change = new Change();
-            change.MakeChange(CurrentBalance);
+            change.MakeChange(this.CurrentBalance);
 
             // Set machine's current balance to 0.
-            CurrentBalance = 0;
+            this.CurrentBalance = 0;
 
             // Print message based on snacks purchased.
             foreach (VendingMachineProduct product in purchasedProducts)
@@ -127,7 +129,7 @@ namespace Capstone.VendingMachine
 
             // Gets list ready for next transaction.
             purchasedProducts.Clear();
-
+            Console.ReadLine();
         }
     }
 
