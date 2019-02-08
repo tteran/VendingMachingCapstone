@@ -38,7 +38,8 @@ namespace Capstone.VendingMachine
         public VendingMachine()
         {
             this.CurrentBalance = 0;
-            StockMachine(inventory);
+            Inventory inv = new Inventory();
+            inv.StockMachine(inventory);
         }
 
         public void Buy(string slotCode)
