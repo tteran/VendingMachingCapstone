@@ -21,7 +21,17 @@ namespace Capstone.CLIs
 
                 if(choice == "1")
                 {
-
+                    while(true)
+                    {
+                        vendingMachine.FeedMoney();
+                      
+                        string yesno = GetString("Would you like to add more money (y/n)?");
+                        
+                        if(yesno.ToLower().StartsWith('n'))
+                        {
+                            break;
+                        }
+                    }
                 }
                 else if(choice == "2")
                 {

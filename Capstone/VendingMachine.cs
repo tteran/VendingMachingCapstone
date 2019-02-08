@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace Capstone.VendingMachine
 {
@@ -38,7 +39,33 @@ namespace Capstone.VendingMachine
         public VendingMachine()
         {
             this.CurrentBalance = 0;
-            StockMachine(inventory);
+            Inventory inv = new Inventory();
+            inv.StockMachine(inventory);
+        }
+
+        /// <summary>
+        /// Method for adding money to Vending Machine.
+        /// </summary>
+        public decimal FeedMoney(int dollarsPutIn, decimal balance)
+        {
+            int currentMoneyProvided = 0;
+
+            int[] validTender = new int[4] { 1, 2, 5, 10 };
+
+            if (!validTender.Contains(dollarsPutIn))
+            {
+                Console.Write("Please enter a valid bill ($1, $2, $5, $10)");
+            }
+            else
+            {
+                
+                currentMoneyProvided += dollarsPutIn;
+               
+            }
+
+            balance += currentMoneyProvided;
+            return balance;
+
         }
 
         public void Buy(string slotCode)

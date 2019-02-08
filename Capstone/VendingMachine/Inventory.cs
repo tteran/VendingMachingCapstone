@@ -43,7 +43,7 @@ namespace Capstone.VendingMachine
                     string currentLine = sr.ReadLine();
                     string[] itemInfo = currentLine.Split('|');
 
-                    VendingMachineProduct vendingMachineProduct = Assembly.GetExecutingAssembly().CreateInstance("Capstone.VendingMachine." + itemInfo[itemInfo.Length - 1], true, BindingFlags.Default, null, new string[]{ itemInfo[1], itemInfo[2] }, null, null ) as VendingMachineProduct;
+                    VendingMachineProduct vendingMachineProduct = Assembly.GetExecutingAssembly().CreateInstance("Capstone.VendingMachine." + itemInfo[itemInfo.Length - 1], true, BindingFlags.Default, null, new string[] { itemInfo[1], itemInfo[2] }, null, null) as VendingMachineProduct;
                     inventory.Add(itemInfo[0], vendingMachineProduct);
                 }
             }

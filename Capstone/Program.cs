@@ -1,5 +1,4 @@
 ﻿using Capstone.CLIs;
-using Capstone.VendingMachine;
 using System;
 
 namespace Capstone
@@ -8,10 +7,9 @@ namespace Capstone
     {
         static void Main(string[] args)
         {
-            // Displays the main menu
-            //VendingMachine vendingMachine;
+            Capstone.VendingMachine.VendingMachine vendingMachine = new VendingMachine.VendingMachine();
             MainMenuCLI menu = new MainMenuCLI();
-            menu.Run();
+            menu.Run(vendingMachine);
         }
     }
 }
