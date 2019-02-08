@@ -69,19 +69,22 @@ namespace Capstone.VendingMachine
 
         public void Buy(string slotCode)
         {
-            // TODO add method code for Buy method
-
+            // Adds method code for Buy method
+            slotCode = slotCode.ToUpper();
             if (inventory.TryGetValue(slotCode.ToUpper(), out VendingMachineProduct selectedProduct))
             {
                 // Check if sold out
                 if (selectedProduct == null)
                 {
                     Console.WriteLine("Product does not exist.");
+                    Console.ReadLine();
+
                     return;
                 }
                 if (selectedProduct.Quantity == 0)
                 {
                     Console.WriteLine("Product is SOLD OUT.");
+                    Console.ReadLine();
                     return;
                 }
                  
@@ -89,6 +92,8 @@ namespace Capstone.VendingMachine
                 if (this.CurrentBalance < selectedProduct.Price)
                 {
                     Console.WriteLine("Not enough credits.");
+                    Console.ReadLine();
+
                     return;
                 }
 
@@ -139,12 +144,12 @@ namespace Capstone.VendingMachine
                 string slotCode = product.Key;
                 VendingMachineProduct currentProduct = product.Value;
                 string name = currentProduct.Name;
-                string price = "SOLD OUT";
-                int quantity = currentProduct.Quantity;
-                if (quantity > 0)
+                decimal price = currentProduct.Price; 
+                string quantity = currentProduct.Quantity.ToString();
+                if (quantity == "0")
                 {
-                    price = currentProduct.Price.ToString();
-                }
+                    quantity = "SOLD OUT";
+                } 
                 Console.WriteLine($"{slotCode}|{name, -20}{price:C2, -10} Quantity:{quantity}");
             }
            

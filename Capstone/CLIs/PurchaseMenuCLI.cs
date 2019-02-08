@@ -28,7 +28,8 @@ namespace Capstone.CLIs
                         {
                             // TODO update Current money provided as money is feed after each input.
                             vendingMachine.FeedMoney(dollarsPutIn);
-                      
+                            DisplayPurchaseMenu(vendingMachine, choice);
+
                             string yesno = GetString("Would you like to add more money (y/n)?");
                             
                             if(yesno.ToLower().StartsWith('n'))
@@ -50,7 +51,7 @@ namespace Capstone.CLIs
 
                         // TODO update Current money provided as each product is selected after each input.
                         vendingMachine.Buy(slotCode);
-
+                        DisplayPurchaseMenu(vendingMachine, choice);
                         string yesno = GetString("Would you to buy something else (y/n)?");
 
                         if (yesno.ToLower().StartsWith('n'))
@@ -65,6 +66,18 @@ namespace Capstone.CLIs
                     break;
                 }
             }
+        }
+
+        private void DisplayPurchaseMenu(VendingMachine.VendingMachine vm, string choice)
+        {
+            Console.Clear();
+            Console.WriteLine("Purchasing Process Menu");
+            Console.WriteLine("1. Feed Money");
+            Console.WriteLine("2. Select Product");
+            Console.WriteLine("3. Finish Transaction");
+            Console.WriteLine($"Current money provided: {vm.CurrentBalance:C2}");
+            Console.WriteLine($"Pick One: {choice}");
+
         }
     }
 }
