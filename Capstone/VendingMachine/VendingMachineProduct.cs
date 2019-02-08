@@ -26,11 +26,11 @@ namespace Capstone.VendingMachine
         /// </summary>
         /// <param name="name"></param>
         /// <param name="price"></param>
-        public VendingMachineProduct(string name, decimal price)
+        public VendingMachineProduct(string name, string price)
         {
             this.Quantity = 5;
             this.Name = name;
-            this.Price = price;
+            this.Price = decimal.Parse(price);
         }
 
         /// <summary>
