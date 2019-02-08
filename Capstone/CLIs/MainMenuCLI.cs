@@ -25,8 +25,8 @@ namespace Capstone.CLIs
 
                 if(choice == "1")
                 {
-                    // Displays inventory to user.
-
+                    vendingMachine.DisplayVendingMachineItems(vendingMachine.inventory);
+                    Console.ReadLine();
                 }
                 else if (choice == "2")
                 {

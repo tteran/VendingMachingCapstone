@@ -131,6 +131,24 @@ namespace Capstone.VendingMachine
             purchasedProducts.Clear();
             Console.ReadLine();
         }
+
+        public void DisplayVendingMachineItems(Dictionary<string, VendingMachineProduct> inventory)
+        {
+            foreach (KeyValuePair<string, VendingMachineProduct> product in inventory)
+            {
+                string slotCode = product.Key;
+                VendingMachineProduct currentProduct = product.Value;
+                string name = currentProduct.Name;
+                string price = "SOLD OUT";
+                int quantity = currentProduct.Quantity;
+                if (quantity > 0)
+                {
+                    price = currentProduct.Price.ToString();
+                }
+                Console.WriteLine($"{slotCode}|{name, -20}{price:C2, -10} Quantity:{quantity}");
+            }
+           
+        }
     }
 
 }
