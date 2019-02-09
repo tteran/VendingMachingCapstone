@@ -7,14 +7,14 @@ using System.Text;
 namespace Capstone.CLIs
 {
     /// <summary>
-    /// Represents a PurchaseMenuCLI
+    /// Represents a PurchaseMenuCLI.
     /// </summary>
     class PurchaseMenuCLI : CLI
     {
         /// <summary>
-        /// Runs the Purchase Menu display
+        /// Runs the Purchase Menu display.
         /// </summary>
-        /// <param name="vendingMachine"></param>
+        /// <param name="vendingMachine">Vending machine passed in.</param>
         public override void Run(VendingMachine vendingMachine)
         {
             Log log = new Log();
@@ -25,7 +25,7 @@ namespace Capstone.CLIs
                 Console.WriteLine("1. Feed Money");
                 Console.WriteLine("2. Select Product");
                 Console.WriteLine("3. Finish Transaction");
-                Console.WriteLine($"Current money provided: {vendingMachine.CurrentBalance:C2}");
+                Console.Write($"Current money provided: {vendingMachine.CurrentBalance:C2}\n");
                 string choice = GetString("Pick One: ");
 
                 if(choice == "1")
@@ -41,7 +41,7 @@ namespace Capstone.CLIs
 
                             //log.AddLogEntry(entry);
 
-                            DisplayPurchaseMenu(vendingMachine, choice);
+                            //DisplayPurchaseMenu(vendingMachine, choice);
 
                             string yesno = GetString("Would you like to add more money (y/n)?");
                             
@@ -63,7 +63,6 @@ namespace Capstone.CLIs
                     {
                         string slotCode = GetString("Please enter a slot code: ");
 
-                        // TODO update Current money provided as each product is selected after each input.
                         vendingMachine.Buy(slotCode);
                         DisplayPurchaseMenu(vendingMachine, choice);
                         string yesno = GetString("Would you like to buy something else (y/n)?");

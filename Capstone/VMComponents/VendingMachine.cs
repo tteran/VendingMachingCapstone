@@ -50,14 +50,16 @@ namespace Capstone.VMComponents
             if (!validTender.Contains(dollarsPutIn))
             {
                 Console.Write("Please enter a valid bill ($1, $2, $5, $10)");
-                Console.ReadLine();
+                Console.SetCursorPosition(23, 6);
             }
             else
             {               
                 currentMoneyProvided += dollarsPutIn;              
             }
             this.CurrentBalance += currentMoneyProvided;
-
+            Console.SetCursorPosition(0, 4);
+            Console.Write($"Current money provided: {this.CurrentBalance:C2}\n");
+            Console.SetCursorPosition(0, 6);
             LogEntry entry = new LogEntry("FEED MONEY: ", dollarsPutIn, this.CurrentBalance);
 
             this._log.AddLogEntry(entry);
@@ -65,16 +67,15 @@ namespace Capstone.VMComponents
         }
 
         /// <summary>
-        /// Buys a product from the machine
+        /// Buys a product from the machine.
         /// </summary>
-        /// <param name="slotCode"></param>
+        /// <param name="slotCode">Slot code is passed in.</param>
         public void Buy(string slotCode)
         {
             // Adds method code for Buy method
             slotCode = slotCode.ToUpper();
             if (inventory.TryGetValue(slotCode.ToUpper(), out VendingMachineProduct selectedProduct))
             {
-                // Check if sold out
                 if (selectedProduct == null)
                 {
                     Console.WriteLine("Product does not exist.");
@@ -153,9 +154,9 @@ namespace Capstone.VMComponents
         }
 
         /// <summary>
-        /// Displays machine inventory
+        /// Displays machine inventory.
         /// </summary>
-        /// <param name="inventory"></param>
+        /// <param name="inventory">Inventory dictionary passed in.</param>
         public void DisplayVendingMachineItems(Dictionary<string, VendingMachineProduct> inventory)
         {
             foreach (KeyValuePair<string, VendingMachineProduct> product in inventory)
