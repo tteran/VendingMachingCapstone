@@ -12,15 +12,44 @@ namespace Capstone.VMComponents
         /// <summary>
         /// The date and time
         /// </summary>
-        readonly string dateTime = DateTime.Now.ToLocalTime().ToString();
-
+        readonly string _dateTime = DateTime.Now.ToLocalTime().ToString();
 
         /// <summary>
         /// Logs the action
         /// </summary>
-        string Action { get; }
+        readonly string _action;
 
+        /// <summary>
+        /// Logs the users available credits.
+        /// </summary>
+        private readonly decimal _userBalance;
 
+        /// <summary>
+        /// Logs the running total machine credits available.
+        /// </summary>
+        private readonly decimal _machineBalance;
 
+        /// <summary>
+        /// Creates a log entry with the given information.
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="userBalance"></param>
+        /// <param name="machineBalance"></param>
+        public LogEntry(string action, decimal userBalance, decimal machineBalance)
+        {
+            this._action = action;
+            this._userBalance = userBalance;
+            this._machineBalance = machineBalance;
+        }
+
+        /// <summary>
+        /// Assembles the Log entry.
+        /// </summary>
+        /// <returns></returns>
+        public string MakeLogEntry()
+        {
+            string makeLogEntry = this._dateTime + ' ' + $"{this._action}".PadRight(30, '.') + $"{this._userBalance:C2}".PadRight(10) + $"{this._machineBalance:C2}";
+            return makeLogEntry;
+        }
     }
 }

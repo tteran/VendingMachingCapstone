@@ -17,6 +17,7 @@ namespace Capstone.CLIs
         /// <param name="vendingMachine"></param>
         public override void Run(VendingMachine vendingMachine)
         {
+            Log log = new Log();
             while(true)
             {
                 Console.Clear();
@@ -34,8 +35,12 @@ namespace Capstone.CLIs
                         string userinput = GetString("Please enter amount: ");
                         if (int.TryParse(userinput, out int dollarsPutIn))
                         {
-                            // TODO update Current money provided as money is feed after each input.
+                            // Updates Current money provided as money is feed after each input.
                             vendingMachine.FeedMoney(dollarsPutIn);
+                            //LogEntry entry = new LogEntry("FEED MONEY: ", dollarsPutIn, vendingMachine.CurrentBalance);
+
+                            //log.AddLogEntry(entry);
+
                             DisplayPurchaseMenu(vendingMachine, choice);
 
                             string yesno = GetString("Would you like to add more money (y/n)?");
@@ -51,6 +56,7 @@ namespace Capstone.CLIs
                         }
                     }
                 }
+
                 else if(choice == "2")
                 {
                     while (true)

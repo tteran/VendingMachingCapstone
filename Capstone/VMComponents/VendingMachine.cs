@@ -10,6 +10,8 @@ namespace Capstone.VMComponents
     /// </summary>
     public class VendingMachine
     {
+        private readonly Log _log = new Log();
+
         /// <summary>
         /// The current balance for the machine
         /// </summary>
@@ -33,6 +35,7 @@ namespace Capstone.VMComponents
             this.CurrentBalance = 0;
             Inventory inv = new Inventory();
             inv.StockMachine(inventory);
+
         }
 
         /// <summary>
@@ -40,7 +43,6 @@ namespace Capstone.VMComponents
         /// </summary>
         public void FeedMoney(int dollarsPutIn)
         {
-            bool hasRan = false;
             int currentMoneyProvided = 0;
 
             int[] validTender = new int[4] { 1, 2, 5, 10 };
@@ -55,7 +57,11 @@ namespace Capstone.VMComponents
                 currentMoneyProvided += dollarsPutIn;              
             }
             this.CurrentBalance += currentMoneyProvided;
-            hasRan = true;
+
+            LogEntry entry = new LogEntry("FEED MONEY: ", dollarsPutIn, this.CurrentBalance);
+
+            this._log.AddLogEntry(entry);
+
         }
 
         /// <summary>
@@ -92,9 +98,15 @@ namespace Capstone.VMComponents
                     return;
                 }
 
+                decimal loggedBalanceBeforeTransaction = this.CurrentBalance;
+
                 //Console.WriteLine(selectedProduct.ProductSelection());
                 this.CurrentBalance -= selectedProduct.Price;
                 selectedProduct.Quantity--;
+
+                LogEntry entry = new LogEntry($"{selectedProduct.Name} {slotCode}", loggedBalanceBeforeTransaction, this.CurrentBalance);
+
+                this._log.AddLogEntry(entry);
 
                 // Adds selected product to customer's inventory.
                 this.purchasedProducts.Add(selectedProduct);
@@ -115,12 +127,19 @@ namespace Capstone.VMComponents
         /// <returns></returns>
         public void FinishTransaction()
         {
+            decimal loggedBalanceBeforeTransaction = this.CurrentBalance;
+
             // Call change method.
             Change change = new Change();
             change.MakeChange(this.CurrentBalance);
 
             // Set machine's current balance to 0.
             this.CurrentBalance = 0;
+
+            LogEntry entry = new LogEntry("GIVE CHANGE: ", loggedBalanceBeforeTransaction, this.CurrentBalance);
+
+            this._log.AddLogEntry(entry);
+            this._log.WriteToLog();
 
             // Print message based on snacks purchased.
             foreach (VendingMachineProduct product in purchasedProducts)
