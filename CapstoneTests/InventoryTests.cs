@@ -121,6 +121,37 @@ namespace CapstoneTests
         }
 
         [DataTestMethod]
+        [DataRow("A1", "Chip")]
+        [DataRow("A2", "Chip")]
+        [DataRow("A3", "Chip")]
+        [DataRow("A4", "Chip")]
+        [DataRow("B1", "Candy")]
+        [DataRow("B2", "Candy")]
+        [DataRow("B3", "Candy")]
+        [DataRow("B4", "Candy")]
+        [DataRow("C1", "Drink")]
+        [DataRow("C2", "Drink")]
+        [DataRow("C3", "Drink")]
+        [DataRow("C4", "Drink")]
+        [DataRow("D1", "Gum")]
+        [DataRow("D2", "Gum")]
+        [DataRow("D3", "Gum")]
+        [DataRow("D4", "Gum")]
+        public void TestInventory_Check_If_Type_was_Deserialzied(string expectedKey, string expectedType)
+        {
+            string str = @"FakeInventories\FakeInvProper.csv";
+            Inventory inventory = new Inventory();
+            Dictionary<string, VendingMachineProduct> mockInventory = new Dictionary<string, VendingMachineProduct>();
+
+            inventory.StockMachine(mockInventory, str);
+
+            // Tests if key exists
+            bool hasKey = mockInventory.ContainsKey(expectedKey);
+
+            Assert.AreEqual(mockInventory[expectedKey].GetType().Name, expectedType);
+        }
+
+        [DataTestMethod]
         [DataRow("A1", "Potato Crisps")]
         [DataRow("A2", "Stackers")]
         [DataRow("A3", "Grain Waves")]
@@ -144,9 +175,6 @@ namespace CapstoneTests
             Dictionary<string, VendingMachineProduct> mockInventory = new Dictionary<string, VendingMachineProduct>();
 
             inventory.StockMachine(mockInventory, str);
-
-            // Tests if key exists
-            bool hasKey = mockInventory.ContainsKey(expectedKey);
 
             Assert.AreEqual(mockInventory[expectedKey].Name, expectedName);
         }
@@ -176,10 +204,8 @@ namespace CapstoneTests
 
             inventory.StockMachine(mockInventory, str);
 
-            // Tests if key exists
-            bool hasKey = mockInventory.ContainsKey(expectedKey);
-
             Assert.AreEqual(mockInventory[expectedKey].Price, (decimal)expectedPrice);
         }
+
     }
 }

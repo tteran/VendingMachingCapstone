@@ -5,19 +5,25 @@ using System.Text;
 
 namespace Capstone.VMComponents
 {
+    /// <summary>
+    /// Represents a Log
+    /// </summary>
     public class Log
     {
+        /// <summary>
+        /// The List of Log entery awating to be written to the log file
+        /// </summary>
         private readonly List<LogEntry> logList = new List<LogEntry>();
 
-        public Log()
-        {
-            
-        }
+        /// <summary>
+        /// Creats an instance of a Log
+        /// </summary>
+        public Log() { }
 
-        //public Log(LogEntry logEntry)
-        //{
-        //    logList.Add(logEntry);
-        //}
+        /// <summary>
+        /// adds entry to the log after each transaction
+        /// </summary>
+        /// <param name="logEntry"></param>
         public void AddLogEntry(LogEntry logEntry)
         {
             logList.Add(logEntry);

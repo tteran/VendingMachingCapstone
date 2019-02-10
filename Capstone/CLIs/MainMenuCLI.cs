@@ -11,6 +11,10 @@ namespace Capstone.CLIs
     /// </summary>
     public class MainMenuCLI : CLI
     {
+        /// <summary>
+        /// Runs the main menu
+        /// </summary>
+        /// <param name="vendingMachine"></param>
         public override void Run(VendingMachine vendingMachine)
         {
             while (true)

@@ -37,11 +37,6 @@ namespace Capstone.CLIs
                         {
                             // Updates Current money provided as money is feed after each input.
                             vendingMachine.FeedMoney(dollarsPutIn);
-                            //LogEntry entry = new LogEntry("FEED MONEY: ", dollarsPutIn, vendingMachine.CurrentBalance);
-
-                            //log.AddLogEntry(entry);
-
-                            //DisplayPurchaseMenu(vendingMachine, choice);
 
                             string yesno = GetString("Would you like to add more money (y/n)?");
                             
@@ -49,10 +44,14 @@ namespace Capstone.CLIs
                             {
                                 break;
                             }
+                            Console.SetCursorPosition(0, 6);
+                            ClearCurrentConsoleLine();
                         }
                         else
                         {
                             Console.WriteLine("Not a vaild amount, tender must be numeric (1, 2, etc.).");
+                            Console.SetCursorPosition(0, 6);
+                            ClearCurrentConsoleLine();
                         }
                     }
                 }
@@ -64,13 +63,14 @@ namespace Capstone.CLIs
                         string slotCode = GetString("Please enter a slot code: ");
 
                         vendingMachine.Buy(slotCode);
-                        DisplayPurchaseMenu(vendingMachine, choice);
                         string yesno = GetString("Would you like to buy something else (y/n)?");
 
                         if (yesno.ToLower().StartsWith('n'))
                         {
                             break;
                         }
+                        Console.SetCursorPosition(0, 6);
+                        ClearCurrentConsoleLine();
                     }
                 }
                 else if(choice == "3")
@@ -79,22 +79,6 @@ namespace Capstone.CLIs
                     break;
                 }
             }
-        }
-
-        /// <summary>
-        /// Displays the console menu.
-        /// </summary>
-        /// <param name="vm"></param>
-        /// <param name="choice"></param>
-        private void DisplayPurchaseMenu(VendingMachine vm, string choice)
-        {
-            Console.Clear();
-            Console.WriteLine("Purchasing Process Menu");
-            Console.WriteLine("1. Feed Money");
-            Console.WriteLine("2. Select Product");
-            Console.WriteLine("3. Finish Transaction");
-            Console.WriteLine($"Current money provided: {vm.CurrentBalance:C2}");
-            Console.WriteLine($"Pick One:  {choice}");
         }
     }
 }
