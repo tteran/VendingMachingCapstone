@@ -9,15 +9,8 @@ namespace Capstone.VMComponents
     {
         private readonly List<LogEntry> logList = new List<LogEntry>();
 
-        public Log()
-        {
-            
-        }
-
-        //public Log(LogEntry logEntry)
-        //{
-        //    logList.Add(logEntry);
-        //}
+        public Log() { }
+   
         public void AddLogEntry(LogEntry logEntry)
         {
             logList.Add(logEntry);

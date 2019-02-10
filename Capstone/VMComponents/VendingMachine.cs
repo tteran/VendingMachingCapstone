@@ -6,29 +6,29 @@ using System.Linq;
 namespace Capstone.VMComponents
 {
     /// <summary>
-    /// Represents a Vending Machine
+    /// Represents a Vending Machine.
     /// </summary>
     public class VendingMachine
     {
         private readonly Log _log = new Log();
 
         /// <summary>
-        /// The current balance for the machine
+        /// The current balance for the machine.
         /// </summary>
         public decimal CurrentBalance { get; private set; }
 
         /// <summary>
-        /// A List that represents the products purchased by the customer BEFORE the finish transaction method is called
+        /// A List that represents the products purchased by the customer BEFORE the finish transaction method is called.
         /// </summary>
         protected List<VendingMachineProduct> purchasedProducts = new List<VendingMachineProduct>();
 
         /// <summary>
-        /// Represents the inventory of the machine based on slotCode and product
+        /// Represents the inventory of the machine based on slotCode and product.
         /// </summary>
         public Dictionary<string, VendingMachineProduct> inventory = new Dictionary<string, VendingMachineProduct>();
 
         /// <summary>
-        /// Creates a Vending Machine
+        /// Creates a Vending Machine.
         /// </summary>
         public VendingMachine()
         {
