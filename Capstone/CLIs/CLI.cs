@@ -117,6 +117,17 @@ namespace DeliveryApp.CLIs
         }
 
         /// <summary>
+        /// Clears the current console line
+        /// </summary>
+        public static void ClearCurrentConsoleLine()
+        {
+            int currentLineCursor = Console.CursorTop;
+            Console.SetCursorPosition(0, Console.CursorTop);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, currentLineCursor);
+        }
+
+        /// <summary>
         /// This is the method called to run a menu.
         /// </summary>
         public abstract void Run(VendingMachine vendingMachine);

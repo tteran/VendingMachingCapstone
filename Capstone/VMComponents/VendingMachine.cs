@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using DeliveryApp.CLIs;
 
 namespace Capstone.VMComponents
 {
@@ -10,6 +11,9 @@ namespace Capstone.VMComponents
     /// </summary>
     public class VendingMachine
     {
+        /// <summary>
+        /// Creates a log for the machine
+        /// </summary>
         private readonly Log _log = new Log();
 
         /// <summary>
@@ -39,6 +43,18 @@ namespace Capstone.VMComponents
         }
 
         /// <summary>
+        /// Creates a Vending Machine based off a custom inventory file
+        /// </summary>
+        /// <param name="path">the inventory file path</param>
+        public VendingMachine(string path)
+        {
+            this.CurrentBalance = 0;
+            Inventory inv = new Inventory();
+            inv.StockMachine(inventory, path);
+
+        }
+
+        /// <summary>
         /// Method for adding money to Vending Machine.
         /// </summary>
         public void FeedMoney(int dollarsPutIn)
@@ -49,7 +65,8 @@ namespace Capstone.VMComponents
 
             if (!validTender.Contains(dollarsPutIn))
             {
-                Console.Write("Please enter a valid bill ($1, $2, $5, $10)");
+                CLI.ClearCurrentConsoleLine();
+                Console.WriteLine("Please enter a valid bill ($1, $2, $5, $10)");
                 Console.SetCursorPosition(23, 6);
             }
             else
@@ -57,11 +74,13 @@ namespace Capstone.VMComponents
                 currentMoneyProvided += dollarsPutIn;              
             }
             this.CurrentBalance += currentMoneyProvided;
+
             Console.SetCursorPosition(0, 4);
+            CLI.ClearCurrentConsoleLine();
             Console.Write($"Current money provided: {this.CurrentBalance:C2}\n");
             Console.SetCursorPosition(0, 6);
-            LogEntry entry = new LogEntry("FEED MONEY: ", dollarsPutIn, this.CurrentBalance);
 
+            LogEntry entry = new LogEntry("FEED MONEY: ", dollarsPutIn, this.CurrentBalance);
             this._log.AddLogEntry(entry);
 
         }
@@ -78,32 +97,40 @@ namespace Capstone.VMComponents
             {
                 if (selectedProduct == null)
                 {
+                    CLI.ClearCurrentConsoleLine();
                     Console.WriteLine("Product does not exist.");
-                    Console.ReadLine();
+                    Console.SetCursorPosition(0, 6);
 
                     return;
                 }
                 if (selectedProduct.Quantity == 0)
                 {
+                    CLI.ClearCurrentConsoleLine();
                     Console.WriteLine("Product is SOLD OUT.");
-                    Console.ReadLine();
+                    Console.SetCursorPosition(0, 6);
+
                     return;
                 }
                  
                 // Check if the user has enough money to buy the product.
                 if (this.CurrentBalance < selectedProduct.Price)
                 {
+                    CLI.ClearCurrentConsoleLine();
                     Console.WriteLine("Not enough credits.");
-                    Console.ReadLine();
+                    Console.SetCursorPosition(0, 6);
 
                     return;
                 }
 
                 decimal loggedBalanceBeforeTransaction = this.CurrentBalance;
 
-                //Console.WriteLine(selectedProduct.ProductSelection());
                 this.CurrentBalance -= selectedProduct.Price;
                 selectedProduct.Quantity--;
+
+                Console.SetCursorPosition(0, 4);
+                CLI.ClearCurrentConsoleLine();
+                Console.Write($"Current money provided: {this.CurrentBalance:C2}\n");
+                Console.SetCursorPosition(0, 6);
 
                 LogEntry entry = new LogEntry($"{selectedProduct.Name} {slotCode}", loggedBalanceBeforeTransaction, this.CurrentBalance);
 
@@ -118,7 +145,7 @@ namespace Capstone.VMComponents
             else
             {
                 Console.WriteLine("Not a valid slot code.");
-                Console.ReadLine();
+                Console.SetCursorPosition(0, 6);
             }
         }
 
