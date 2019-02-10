@@ -17,4 +17,13 @@
     <ProjectReference Include="..\Capstone\Capstone.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="FakeInventories\FakeInvNulls.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="FakeInventories\FakeInvProper.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

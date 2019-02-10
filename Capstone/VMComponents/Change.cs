@@ -12,7 +12,7 @@ namespace Capstone.VMComponents
         /// <summary>
         /// The Value of each coin
         /// </summary>
-        private readonly int[] coinValues = { 25, 10, 5 };
+        private readonly int[] _coinValues = { 25, 10, 5 };
 
         /// <summary>
         /// Represents the number of Quarters
@@ -46,26 +46,35 @@ namespace Capstone.VMComponents
         /// <param name="balance"></param>
         public void MakeChange(decimal balance)
         {
-            int workingBalance = (int)balance * 100;
-            for (int i = 0; i < coinValues.Length; i++)
+            // Rounding erorr fix by adding ()
+            int workingBalance = 0;
+            decimal compairingBalance = balance * 100;
+
+            for (int i = 0; i < this._coinValues.Length; i++)
             {
-                while ((workingBalance % coinValues[i] == 0) && workingBalance > 0)
+                while (workingBalance < compairingBalance)
                 {
-                    workingBalance -= coinValues[i];
+                    // Fixed when next coin shold be used, 
+                    if ((workingBalance + this._coinValues[i]) > compairingBalance)
+                    {
+                        break;
+                    }
+                    workingBalance += this._coinValues[i];
                     if (i == 0)
                     {
-                        Quarters++;
+                        this.Quarters++;
                     }
                     else if (i == 1)
                     {
-                        Dimes++;
+                        this.Dimes++;
                     }
                     else
                     {
-                        Nickels++;
+                        this.Nickels++;
                     }
                 }
             }
+            balance = 0;
         }
     }
 }
