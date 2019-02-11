@@ -12,7 +12,7 @@ namespace Capstone.VMComponents
     public class VendingMachine
     {
         /// <summary>
-        /// Creates a log for the machine
+        /// Creates a log for the machine.
         /// </summary>
         private readonly Log _log = new Log();
 
@@ -39,11 +39,10 @@ namespace Capstone.VMComponents
             this.CurrentBalance = 0;
             Inventory inv = new Inventory();
             inv.StockMachine(inventory);
-
         }
 
         /// <summary>
-        /// Creates a Vending Machine based off a custom inventory file
+        /// Creates a Vending Machine based off a custom inventory file.
         /// </summary>
         /// <param name="path">the inventory file path</param>
         public VendingMachine(string path)
@@ -51,7 +50,6 @@ namespace Capstone.VMComponents
             this.CurrentBalance = 0;
             Inventory inv = new Inventory();
             inv.StockMachine(inventory, path);
-
         }
 
         /// <summary>
@@ -139,7 +137,7 @@ namespace Capstone.VMComponents
                 // Adds selected product to customer's inventory.
                 this.purchasedProducts.Add(selectedProduct);
 
-                // At the end of the buy method we reasigned the updated version of that product 
+                // At the end of the buy method we reasigned the updated version of that product.
                 this.inventory[slotCode] = selectedProduct;
             }
             else
@@ -198,9 +196,7 @@ namespace Capstone.VMComponents
                     quantity = "SOLD OUT";
                 } 
                 Console.WriteLine($"{slotCode}|{name, -20}{price:C2}\tQuantity: {quantity}");
-            }
-           
+            }          
         }
     }
-
 }

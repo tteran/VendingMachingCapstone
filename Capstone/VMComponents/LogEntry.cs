@@ -10,12 +10,12 @@ namespace Capstone.VMComponents
     public class LogEntry
     {
         /// <summary>
-        /// The date and time
+        /// The date and time.
         /// </summary>
         readonly string _dateTime = DateTime.Now.ToLocalTime().ToString();
 
         /// <summary>
-        /// Logs the action
+        /// Logs the action.
         /// </summary>
         readonly string _action;
 
