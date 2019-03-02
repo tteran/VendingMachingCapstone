@@ -20,6 +20,7 @@ the user's balance and the vending machine balance.
 ## Built With
 
 * [C#](https://docs.microsoft.com/en-us/dotnet/csharp/) - The language used
+* [Visual Studio 2017](https://visualstudio.microsoft.com/vs/whatsnew/) - IDE used
 * [file I/O](https://docs.microsoft.com/en-us/dotnet/standard/io/) - Used to stock the vending machine and write out to an audit file
 
 ## Authors
