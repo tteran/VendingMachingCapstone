@@ -1,4 +1,4 @@
-# VendingMachingCapstone
+# Vending Maching Capstone
 Module 1 capstone at Tech Elevator
 
 ## Software Functionality
